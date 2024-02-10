@@ -1,0 +1,28 @@
+import showProjects from "./showProjects";
+
+let i = 0;
+
+function addProjects() {
+    let userProjectName = prompt("Enter a project name");
+    let userProjectDescription = prompt("Enter a description");
+    let projectList = document.querySelector(".projects-list");
+    let projectName = document.createElement("span");
+    let projectDescription = document.createElement("span");
+
+    projectName.innerHTML = `
+    <span class="projectName${i}">${userProjectName}</span>
+    `
+    projectDescription.innerHTML = `
+    <span class="projectDescription${i}">${userProjectDescription}</span>
+    `
+
+    projectList.appendChild(projectName);
+    projectList.appendChild(projectDescription);
+
+    showProjects(projectName, projectDescription);
+    i++;
+}
+
+
+
+export default addProjects

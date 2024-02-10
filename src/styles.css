@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.semantic-elements-container {
+    display: flex;
+}
+
+aside {
+    background-color: #475569;
+    width: 25%;
+    height: 100vh;   
+}
+
+.aside-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10rem;
+}
+
+h1 {
+    font-size: 2.8rem;
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+.little-line {
+    border: 1px solid black;
+    width: 20rem;
+}
+
+.projects-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.projects-list span {
+    display: block;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.add-project {
+    font-size: 2rem;
+    color: azure;
+    cursor: pointer;
+}
+
+.add-project:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+    background-color: #1e293b;
+    width: 75%;
+    height: 100vh;
+}
+
+.project-display {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-name {
+    font-size: 2.3rem;
+    color: aqua;
+}
+
+.project-description {
+    font-size: 1.7rem;
+    color: yellowgreen;
+}
+
+.long-line {
+    width: 90%;
+    border: 1px solid grey;
+}
+
+.add-task {
+    font-size: 2rem;
+    color: azure;
+    cursor: pointer;
+}
+
+.add-task:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
