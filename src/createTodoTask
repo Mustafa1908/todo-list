@@ -1,3 +1,34 @@
-export class CreateTodoTask {
-    
-}
+let taskArray = [];
+
+export default class CreateToDoTask {
+    constructor(task) {
+      this.task = task;
+    }
+
+    createTaskArray () {
+      let newTaskArray = [];
+      taskArray.push(newTaskArray);
+    }
+
+    addTaskToArray(projectIndexValue, task) {
+      taskArray[projectIndexValue].push(task);
+    }
+
+    showArray() {
+      console.log(taskArray);
+    }
+
+    showTasks(projectIndex) {
+      return alert(taskArray[projectIndex]);
+    }
+ 
+  }
+
+
+
+  /* 
+create an empty array when creating a project
+add task to empty array when clicking on add task
+use a render function to show all task  
+*/
+
