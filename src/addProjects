@@ -1,6 +1,8 @@
-import showProjects from "./showProjects";
+import showProjects from ".";
+import showProjectWhenCreatingProject from "./showProjectWhenCreatingProject";
 
 let i = 0;
+
 
 function addProjects() {
     let userProjectName = prompt("Enter a project name");
@@ -10,16 +12,15 @@ function addProjects() {
     let projectDescription = document.createElement("span");
 
     projectName.innerHTML = `
-    <span class="projectName${i}">${userProjectName}</span>
+    <span class="${i}">${userProjectName}</span>
     `
-    projectDescription.innerHTML = `
-    <span class="projectDescription${i}">${userProjectDescription}</span>
-    `
+
+    projectName.dataset.index = i;
 
     projectList.appendChild(projectName);
-    projectList.appendChild(projectDescription);
-
-    showProjects(projectName, projectDescription);
+    showProjectWhenCreatingProject(projectName, userProjectDescription);
+    
+    showProjects(projectName, userProjectDescription);
     i++;
 }
 
