@@ -5,30 +5,43 @@ export default class CreateToDoTask {
       this.task = task;
     }
 
+    
     createTaskArray () {
       let newTaskArray = [];
       taskArray.push(newTaskArray);
     }
 
+
     addTaskToArray(projectIndexValue, task) {
       taskArray[projectIndexValue].push(task);
     }
+
 
     showArray() {
       console.log(taskArray);
     }
 
-    showTasks(projectIndex) {
-      return alert(taskArray[projectIndex]);
+
+    showTaskArrayLength(projectIndex) {
+      let projectTaskArrayLength = taskArray[projectIndex];
+      return projectTaskArrayLength.length;
+    }
+
+
+    renderToDoTask(projectIndex, taskLength) {
+      let taskArrayLength = taskLength;
+
+      for(let i = 0; i < taskArrayLength; i++) {
+        let projectTasksContainer = document.querySelector(".project-tasks-container");
+        let taskElement = document.createElement("div");
+
+        taskElement.innerText = taskArray[projectIndex][i];
+        
+        projectTasksContainer.appendChild(taskElement);
+      }
     }
  
   }
 
 
-
-  /* 
-create an empty array when creating a project
-add task to empty array when clicking on add task
-use a render function to show all task  
-*/
 
