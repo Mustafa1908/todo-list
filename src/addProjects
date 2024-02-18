@@ -1,26 +1,27 @@
 import showProjects from ".";
 import showProjectWhenCreatingProject from "./showProjectWhenCreatingProject";
 
+
 let i = 0;
 
-
-function addProjects() {
-    let userProjectName = prompt("Enter a project name");
-    let userProjectDescription = prompt("Enter a description");
+function addProjects(projectNames, projectDescription) {
+    if (projectNames === "") {
+        return;
+    }
+    
     let projectList = document.querySelector(".projects-list");
     let projectName = document.createElement("span");
-    let projectDescription = document.createElement("span");
 
     projectName.innerHTML = `
-    <span class="${i}">${userProjectName}</span>
+    <span class="${i}">${projectNames}ff</span>
     `
 
     projectName.dataset.index = i;
 
     projectList.appendChild(projectName);
-    showProjectWhenCreatingProject(projectName, userProjectDescription);
     
-    showProjects(projectName, userProjectDescription);
+    showProjectWhenCreatingProject(projectName, projectDescription);
+    showProjects(projectName, projectDescription);
     i++;
 }
 
