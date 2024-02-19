@@ -1,20 +1,21 @@
 import CreateToDoTask from "./createTodoTask";
 import getProjectIndexValue from "./getProjectIndexValue";
 import createInputForAddProject from "./createInputsForAddProject";
+import addProjects from "./addProjects";
 import "./styles.css"
 
 
 
 const user = new CreateToDoTask("user");
 let projectIndexValue = -1;
-let currentProjectIndex = 0;
+
+
 
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".add-project"); 
     if(target){
         createInputForAddProject()
         user.createTaskArray();
-        alert("hey")
         projectIndexValue++;
     }
   });
@@ -45,9 +46,11 @@ document.addEventListener("click", (e) => {
             return;
           }
           
+          let projectTasksContainer = document.querySelector(".project-tasks-container");
+          projectTasksContainer.innerHTML = "";
 
-          //user.addTaskToArray(getProjectIndexValue(projectName), taskInput.value);
-          user.showArray();
+          user.addTaskToArray(projectIndexValue, taskInput.value);
+          user.renderToDoTask(projectIndexValue, user.showTaskArrayLength(projectIndexValue));
           taskInput.value = ""
           
           taskInput.remove();
@@ -65,13 +68,15 @@ document.addEventListener("click", (e) => {
       user.renderToDoTask(projectIndex, taskArrayLength);
       let projectDisplayName = document.querySelector(".project-name");
       let projectDisplayDescription = document.querySelector(".project-description");
+      let projectTasksContainer = document.querySelector(".project-tasks-container");
 
+      projectTasksContainer.innerHTML = "";
+      user.renderToDoTask(projectIndex, taskArrayLength);
       var elem = e.target.closest("[class]");
 
       if (elem && elem.getAttribute('class') !== 'root') {
       }  projectDisplayName.innerHTML = `<span class="project-name">${projectName.innerText}</span>`;
       projectDisplayDescription.innerHTML = `<span class="project-description">${projectDescription}</span>`;
-      currentProjectIndex = projectIndex;
   });
 }
 
