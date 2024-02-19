@@ -1,0 +1,16 @@
+import addProjects from "./addProjects";
+
+
+function createExampleProject() {
+    let projectName = document.createElement("p");
+    let projectDescription = document.createElement("p");
+
+    projectName.innerHTML = `<p>Example Project</p>`
+    projectDescription.innerHTML = `<p>Example Description</p>`
+
+    addProjects(projectName.innerText, projectDescription.innerText);
+}
+
+
+
+export default createExampleProject

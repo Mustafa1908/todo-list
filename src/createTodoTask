@@ -35,7 +35,7 @@ export default class CreateToDoTask {
         let projectTasksContainer = document.querySelector(".project-tasks-container");
         let taskElement = document.createElement("div");
 
-        taskElement.innerText = taskArray[projectIndex][i];
+        taskElement.innerHTML = `<div class="project-task">${taskArray[projectIndex][i]}</div>`
         
         projectTasksContainer.appendChild(taskElement);
       }
