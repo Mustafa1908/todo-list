@@ -1,7 +1,7 @@
 import CreateToDoTask from "./createTodoTask";
 import getProjectIndexValue from "./getProjectIndexValue";
 import createInputForAddProject from "./createInputsForAddProject";
-import addProjects from "./addProjects";
+import createExampleProject from "./createExampleProject";
 import "./styles.css"
 
 
@@ -10,6 +10,18 @@ const user = new CreateToDoTask("user");
 let projectIndexValue = -1;
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  createExampleProject();
+  user.createTaskArray();
+  projectIndexValue++;
+  user.showArray();
+
+  for (let i = 1; i <= 5; i++) {
+    user.addTaskToArray(0, "Example Task" + i);
+  }
+
+  user.renderToDoTask(0, 5);
+})
 
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".add-project"); 
