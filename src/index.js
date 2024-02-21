@@ -2,12 +2,13 @@ import CreateToDoTask from "./createTodoTask";
 import getProjectIndexValue from "./getProjectIndexValue";
 import createInputForAddProject from "./createInputsForAddProject";
 import createExampleProject from "./createExampleProject";
+import calculateTimeBetweenDates from "./calculateTimeBetweenDates";
+import comparePastDates from "./comparePastDates";
 import "./styles.css"
-
-
 
 const user = new CreateToDoTask("user");
 let projectIndexValue = -1;
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,10 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   for (let i = 1; i <= 5; i++) {
     user.addTaskToArray(0, "Example Task" + i);
+    
+    let dateExample = calculateTimeBetweenDates("2024/02/19");
+    user.addDateToArray(dateExample);
   }
+    
+    user.renderToDoTask(0, 5);
+}) 
 
-  user.renderToDoTask(0, 5);
-})
+
 
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".add-project"); 
@@ -40,12 +46,15 @@ document.addEventListener("click", (e) => {
     if(target){
       let projectInputContainer = document.querySelector("#add-task-container");
       let taskInput = document.createElement("input");
+      let dateInput = document.createElement("input");
       let submitTask = document.createElement("submit-task");
-
-      taskInput.innerHTML = `<input type="text">`
-      submitTask.innerHTML = `<button type="submit" id="submit-task">submit</button>`
+      
+      taskInput.type = "text";
+      dateInput.type = "date";
+      submitTask.innerHTML = `<button type="submit" id="submit-task">submit</button>`;
 
       projectInputContainer.appendChild(taskInput);
+      projectInputContainer.appendChild(dateInput);
       projectInputContainer.appendChild(submitTask);
       taskInput.focus();
       
@@ -57,15 +66,19 @@ document.addEventListener("click", (e) => {
           if (taskInput.value === "") {
             return;
           }
-          
+
+          let differenceBetweenDates = calculateTimeBetweenDates(dateInput.value);
           let projectTasksContainer = document.querySelector(".project-tasks-container");
+          
           projectTasksContainer.innerHTML = "";
 
           user.addTaskToArray(projectIndexValue, taskInput.value);
+          user.addDateToArray(differenceBetweenDates);
           user.renderToDoTask(projectIndexValue, user.showTaskArrayLength(projectIndexValue));
           taskInput.value = ""
           
           taskInput.remove();
+          dateInput.remove();
           submitTask.remove();
         }
       });
