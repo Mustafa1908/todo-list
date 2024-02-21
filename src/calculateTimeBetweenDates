@@ -1,0 +1,26 @@
+import compareFuturDates from "./compareFuturDates";
+import comparePastDates from "./comparePastDates";
+
+
+function calculateTimeBetweenDates(dateInput) {
+    let userDate = new Date(dateInput);
+    let currentDate = new Date;
+
+    if (userDate > currentDate) {
+        let timeInMiliSec = userDate.getTime() - currentDate.getTime();
+        let differenceInDays = ( Math.ceil(timeInMiliSec / (1000 * 60 * 60 * 24)) );
+        return compareFuturDates(differenceInDays);
+    }
+
+    let Difference_In_Time = currentDate.getTime() - userDate.getTime();
+
+    let Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+    Difference_In_Days -= 1;
+
+
+    return comparePastDates(Difference_In_Days);
+}
+
+
+
+export default calculateTimeBetweenDates
