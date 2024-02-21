@@ -18,22 +18,18 @@ export default class CreateToDoTask {
     }
 
 
-    showArray() {
-      console.log(taskArray);
-    }
-
-
     showTaskArrayLength(projectIndex) {
       let projectTaskArrayLength = taskArray[projectIndex];
       return projectTaskArrayLength.length;
     }
 
-    showDateArray() {
-      console.log(dateArray);
+    createDateArray() {
+      let newDateArray = [];
+      dateArray.push(newDateArray);
     }
 
-    addDateToArray(date) {
-      dateArray.push(date);
+    addDateToArray(projectIndexValue, date) {
+      dateArray[projectIndexValue].push(date);
     }
 
 
@@ -47,7 +43,7 @@ export default class CreateToDoTask {
         let dateInput = document.createElement("span")
 
         taskElement.innerHTML = `<span class="project-task">${taskArray[projectIndex][i]}</span>`
-        dateInput.innerHTML = `<span class="project-task"> ${dateArray[i]}</span>`
+        dateInput.innerHTML = `<span class="project-task"> ${dateArray[projectIndex][i]}</span>`
         
         
         taskInfosContainer.appendChild(taskElement);
