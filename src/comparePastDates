@@ -1,0 +1,55 @@
+function comparePastDates(dateDaysDifference) {
+    if (dateDaysDifference > 0 && dateDaysDifference <= 7) {
+        return dateDaysDifference + " days ago";
+    } else if (dateDaysDifference > 7 && dateDaysDifference <= 29) {
+        return dateDaysDifference + " days ago";
+    } 
+
+
+    if (dateDaysDifference >= 30 && dateDaysDifference <= 364) {
+        let numberOfMonths = 0;
+        let i = 30;
+
+
+        if (dateDaysDifference >= 30 && dateDaysDifference <= 60) {
+            numberOfMonths++;
+            return numberOfMonths + " month ago";
+        }
+
+
+        while (i < dateDaysDifference) {
+            i += 30;
+            numberOfMonths++;
+        }
+
+        
+        return numberOfMonths + " months ago";
+    }
+
+
+    if (dateDaysDifference >= 365) {
+        let numberOfYears = 0;
+        let i = 365;
+
+
+        if (dateDaysDifference >= 365 && dateDaysDifference <= 729) {
+            numberOfYears++;
+            return numberOfYears + " year ago";
+        }
+
+
+        while (i < dateDaysDifference) {
+            i += 365;
+            numberOfYears++;
+        }
+
+        return numberOfYears + " years ago";
+    }
+
+    
+}
+
+
+
+
+export default comparePastDates
