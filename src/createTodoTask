@@ -1,4 +1,5 @@
 let taskArray = [];
+let dateArray = [];
 
 export default class CreateToDoTask {
     constructor(task) {
@@ -27,17 +28,32 @@ export default class CreateToDoTask {
       return projectTaskArrayLength.length;
     }
 
+    showDateArray() {
+      console.log(dateArray);
+    }
+
+    addDateToArray(date) {
+      dateArray.push(date);
+    }
+
 
     renderToDoTask(projectIndex, taskLength) {
       let taskArrayLength = taskLength;
 
       for(let i = 0; i < taskArrayLength; i++) {
         let projectTasksContainer = document.querySelector(".project-tasks-container");
-        let taskElement = document.createElement("div");
+        let taskInfosContainer = document.createElement("div");
+        let taskElement = document.createElement("span");
+        let dateInput = document.createElement("span")
 
-        taskElement.innerHTML = `<div class="project-task">${taskArray[projectIndex][i]}</div>`
+        taskElement.innerHTML = `<span class="project-task">${taskArray[projectIndex][i]}</span>`
+        dateInput.innerHTML = `<span class="project-task"> ${dateArray[i]}</span>`
         
-        projectTasksContainer.appendChild(taskElement);
+        
+        taskInfosContainer.appendChild(taskElement);
+        taskInfosContainer.appendChild(dateInput);
+
+        projectTasksContainer.appendChild(taskInfosContainer);
       }
     }
  
