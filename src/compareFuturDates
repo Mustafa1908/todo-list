@@ -1,0 +1,53 @@
+function compareFuturDates(dateDaysDifference) {
+    if (dateDaysDifference > 0 && dateDaysDifference <= 7) {
+        return "In " + dateDaysDifference + " days";
+    } else if (dateDaysDifference > 7 && dateDaysDifference <= 29) {
+        return "In " + dateDaysDifference + " days";
+    } 
+
+
+    if (dateDaysDifference >= 30 && dateDaysDifference <= 364) {
+        let numberOfMonths = 0;
+        let i = 30;
+
+
+        if (dateDaysDifference >= 30 && dateDaysDifference <= 60) {
+            numberOfMonths++;
+            return "In " + numberOfMonths + " month";
+        }
+
+
+        while (i < dateDaysDifference) {
+            i += 30;
+            numberOfMonths++;
+        }
+
+        
+        return "In " + numberOfMonths + " months";
+    }
+
+
+    if (dateDaysDifference >= 365) {
+        let numberOfYears = 0;
+        let i = 365;
+
+
+        if (dateDaysDifference >= 365 && dateDaysDifference <= 729) {
+            numberOfYears++;
+            return "In " + numberOfYears + " year";
+        }
+
+
+        while (i < dateDaysDifference) {
+            i += 365;
+            numberOfYears++;
+        }
+
+        return "In " + numberOfYears + " years";
+    }
+
+}
+
+
+
+export default compareFuturDates
