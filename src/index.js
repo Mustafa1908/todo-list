@@ -3,25 +3,24 @@ import getProjectIndexValue from "./getProjectIndexValue";
 import createInputForAddProject from "./createInputsForAddProject";
 import createExampleProject from "./createExampleProject";
 import calculateTimeBetweenDates from "./calculateTimeBetweenDates";
-import comparePastDates from "./comparePastDates";
 import "./styles.css"
 
 const user = new CreateToDoTask("user");
-let projectIndexValue = -1;
+let projectIndex = -1;
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
   createExampleProject();
   user.createTaskArray();
-  projectIndexValue++;
-  user.showArray();
+  user.createDateArray();
+  projectIndex++;
+
+  let dateExample = calculateTimeBetweenDates("2024/02/19");
 
   for (let i = 1; i <= 5; i++) {
     user.addTaskToArray(0, "Example Task" + i);
-    
-    let dateExample = calculateTimeBetweenDates("2024/02/19");
-    user.addDateToArray(dateExample);
+    user.addDateToArray(0, dateExample);
   }
     
     user.renderToDoTask(0, 5);
@@ -32,9 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".add-project"); 
     if(target){
-        createInputForAddProject()
+        createInputForAddProject();
         user.createTaskArray();
-        projectIndexValue++;
+        user.createDateArray();
+        projectIndex++;
     }
   });
 
@@ -72,23 +72,25 @@ document.addEventListener("click", (e) => {
           
           projectTasksContainer.innerHTML = "";
 
-          user.addTaskToArray(projectIndexValue, taskInput.value);
-          user.addDateToArray(differenceBetweenDates);
-          user.renderToDoTask(projectIndexValue, user.showTaskArrayLength(projectIndexValue));
+          user.addTaskToArray(projectIndex, taskInput.value);
+          user.addDateToArray(projectIndex, differenceBetweenDates);
+          user.renderToDoTask(projectIndex, user.showTaskArrayLength(projectIndex));
           taskInput.value = ""
-          
+
           taskInput.remove();
           dateInput.remove();
           submitTask.remove();
+          user.showDateArray();
         }
       });
     }
   });
 
+
     
   function showProjects(projectName, projectDescription) {
   projectName.addEventListener('click', e => {
-      let projectIndex = getProjectIndexValue(projectName);
+      projectIndex = getProjectIndexValue(projectName);
       let taskArrayLength = user.showTaskArrayLength(projectIndex);
       user.renderToDoTask(projectIndex, taskArrayLength);
       let projectDisplayName = document.querySelector(".project-name");
