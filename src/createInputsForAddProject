@@ -1,0 +1,38 @@
+import addProjects from "./addProjects";
+
+
+function createInputsForAddProject() {
+    let projectInputContainer = document.querySelector(".project-input-container");
+    let projectName = document.createElement("input");
+    let projectDescription = document.createElement("input");
+    let submitProject = document.createElement("button");
+
+    projectName.innerHTML = `<input type="text" id="project-name">`
+    projectDescription.innerHTML = `<input type="text" id="project-description">`
+    submitProject.innerHTML = `<button type="submit" id="submit-project">submit</button>`
+
+    projectInputContainer.appendChild(projectName);
+    projectInputContainer.appendChild(projectDescription);
+    projectInputContainer.appendChild(submitProject);
+    projectName.focus();
+
+
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest("#submit-project"); 
+      if(target){
+        e.preventDefault();
+        addProjects(projectName.value, projectDescription.value);
+        projectName.value = "";
+        
+        projectName.remove();
+        projectDescription.remove();
+        submitProject.remove();
+
+        let projectTasksContainer = document.querySelector(".project-tasks-container");
+        projectTasksContainer.innerHTML = "";
+      }
+    });
+}
+
+
+export default createInputsForAddProject
