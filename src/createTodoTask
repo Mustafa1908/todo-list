@@ -5,7 +5,6 @@ export default class CreateToDoTask {
     constructor(task) {
       this.task = task;
     }
-
     
     createTaskArray () {
       let newTaskArray = [];
@@ -16,7 +15,6 @@ export default class CreateToDoTask {
     addTaskToArray(projectIndexValue, task) {
       taskArray[projectIndexValue].push(task);
     }
-
 
     showTaskArrayLength(projectIndex) {
       let projectTaskArrayLength = taskArray[projectIndex];
@@ -32,22 +30,33 @@ export default class CreateToDoTask {
       dateArray[projectIndexValue].push(date);
     }
 
+    removeTaskAndDateFromArray(projectArrayLocation, projectIndex) {
+      taskArray[projectArrayLocation].splice(projectIndex, 1);
+      dateArray[projectArrayLocation].splice(projectIndex, 1);
+    }
+
 
     renderToDoTask(projectIndex, taskLength) {
       let taskArrayLength = taskLength;
-
       for(let i = 0; i < taskArrayLength; i++) {
         let projectTasksContainer = document.querySelector(".project-tasks-container");
         let taskInfosContainer = document.createElement("div");
+        taskInfosContainer.className = "task-infos-container";
         let taskElement = document.createElement("span");
         let dateInput = document.createElement("span")
+        let deleteIcon = document.createElement("span");
 
+        taskInfosContainer.innerHTML = `<div class="task-infos-container"></div>`
         taskElement.innerHTML = `<span class="project-task">${taskArray[projectIndex][i]}</span>`
         dateInput.innerHTML = `<span class="project-task"> ${dateArray[projectIndex][i]}</span>`
-        
+        deleteIcon.innerHTML = `<span class="material-symbols-outlined trash-icon" onclick="myFunction()">
+        delete</span>`
+
+        taskInfosContainer.dataset.index = i;
         
         taskInfosContainer.appendChild(taskElement);
         taskInfosContainer.appendChild(dateInput);
+        taskInfosContainer.appendChild(deleteIcon);
 
         projectTasksContainer.appendChild(taskInfosContainer);
       }
