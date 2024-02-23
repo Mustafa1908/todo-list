@@ -109,4 +109,26 @@ document.addEventListener("click", (e) => {
 
 
 
+
+  document.addEventListener("click", function(e){
+  const target = e.target.closest(".trash-icon"); 
+  const taskContainer = e.target.closest(".task-infos-container");
+  if(target){
+    let indexProject = getProjectIndexValue(taskContainer);
+    let projectTasksContainer = document.querySelector(".project-tasks-container");
+    let taskArrayLength;
+  
+    user.removeTaskAndDateFromArray(projectIndex, indexProject);
+    user.showArray();
+    user.showDateArray();
+
+    taskArrayLength = user.showTaskArrayLength(projectIndex);
+    projectTasksContainer.innerHTML = "";
+
+    user.renderToDoTask(projectIndex, taskArrayLength);
+  } 
+});
+
+
+
 export default showProjects
