@@ -1,0 +1,50 @@
+import { user } from ".";
+import calculateTimeBetweenDates from "./calculateTimeBetweenDates";
+
+
+
+function addTask(projectIndex) {
+      let projectInputContainer = document.querySelector("#add-task-container");
+      let taskInput = document.createElement("input");
+      let dateInput = document.createElement("input");
+      let submitTask = document.createElement("submit-task");
+      
+      taskInput.type = "text";
+      dateInput.type = "date";
+      submitTask.innerHTML = `<button type="submit" id="submit-task">submit</button>`;
+
+      projectInputContainer.appendChild(taskInput);
+      projectInputContainer.appendChild(dateInput);
+      projectInputContainer.appendChild(submitTask);
+      taskInput.focus();
+      
+
+      document.addEventListener("click", (e) => {
+        const target = e.target.closest("#submit-task"); 
+        if(target){
+          e.preventDefault();
+          if (taskInput.value === "") {
+            return;
+          }
+
+          let differenceBetweenDates = calculateTimeBetweenDates(dateInput.value);
+          let projectTasksContainer = document.querySelector(".project-tasks-container");
+          
+          projectTasksContainer.innerHTML = "";
+
+          user.addTaskToArray(projectIndex, taskInput.value);
+          user.addDateToArray(projectIndex, differenceBetweenDates);
+          user.renderToDoTask(projectIndex, user.showTaskArrayLength(projectIndex));
+          taskInput.value = ""
+
+          taskInput.remove();
+          dateInput.remove();
+          submitTask.remove();
+          user.showDateArray();
+        }
+      });
+}
+
+
+
+export default addTask
