@@ -1,4 +1,4 @@
-import showProjects from ".";
+import showProjects from "./showProjects";
 import showProjectWhenCreatingProject from "./showProjectWhenCreatingProject";
 
 
@@ -13,7 +13,7 @@ function addProjects(projectNames, projectDescription) {
     let projectName = document.createElement("span");
 
     projectName.innerHTML = `
-    <span class="${i}">${projectNames}ff</span>
+    <span class="${i}">${projectNames}</span>
     `
 
     projectName.dataset.index = i;
@@ -21,7 +21,7 @@ function addProjects(projectNames, projectDescription) {
     projectList.appendChild(projectName);
     
     showProjectWhenCreatingProject(projectName, projectDescription);
-    showProjects(projectName, projectDescription);
+    showProjects(projectName, projectDescription, i);
     i++;
 }
 
