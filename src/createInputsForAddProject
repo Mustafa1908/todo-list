@@ -1,4 +1,5 @@
 import addProjects from "./addProjects";
+import { user } from ".";
 
 
 function createInputsForAddProject() {
@@ -30,6 +31,9 @@ function createInputsForAddProject() {
 
         let projectTasksContainer = document.querySelector(".project-tasks-container");
         projectTasksContainer.innerHTML = "";
+
+        user.createTaskArray();
+        user.createDateArray();
       }
     });
 }
