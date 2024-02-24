@@ -1,0 +1,28 @@
+import { user } from "."
+import { projectIndex } from ".";
+import { setProjectIndex } from ".";
+import getProjectIndexValue from "./getProjectIndexValue";
+
+function showProjects(projectName, projectDescription, projectIndexx) {
+    projectName.addEventListener('click', e => {
+        projectIndexx = getProjectIndexValue(projectName);
+        let taskArrayLength = user.showTaskArrayLength(projectIndexx);
+        user.renderToDoTask(projectIndexx, taskArrayLength);
+        let projectDisplayName = document.querySelector(".project-name");
+        let projectDisplayDescription = document.querySelector(".project-description");
+        let projectTasksContainer = document.querySelector(".project-tasks-container");
+  
+        projectTasksContainer.innerHTML = "";
+        user.renderToDoTask(projectIndexx, taskArrayLength);
+        var elem = e.target.closest("[class]");
+  
+        if (elem && elem.getAttribute('class') !== 'root') {
+        }  projectDisplayName.innerHTML = `<span class="project-name">${projectName.innerText}</span>`;
+        projectDisplayDescription.innerHTML = `<span class="project-description">${projectDescription}</span>`;
+        setProjectIndex(projectIndexx);
+    });
+}
+
+
+
+export default showProjects
