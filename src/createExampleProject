@@ -1,5 +1,6 @@
 import addProjects from "./addProjects";
-
+import calculateTimeBetweenDates from "./calculateTimeBetweenDates";
+import { user } from ".";
 
 function createExampleProject() {
     let projectName = document.createElement("p");
@@ -9,6 +10,18 @@ function createExampleProject() {
     projectDescription.innerHTML = `<p>Example Description</p>`
 
     addProjects(projectName.innerText, projectDescription.innerText);
+
+    user.createTaskArray();
+    user.createDateArray();
+
+    let dateExample = calculateTimeBetweenDates("2024/02/19");
+
+    for (let i = 1; i <= 5; i++) {
+        user.addTaskToArray(0, "Example Task" + i);
+        user.addDateToArray(0, dateExample);
+      }
+        
+    user.renderToDoTask(0, 5);
 }
 
 
