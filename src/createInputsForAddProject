@@ -3,6 +3,7 @@ import { user } from ".";
 
 
 function createInputsForAddProject() {
+    let addProject = document.querySelector(".add-project");
     let projectInputContainer = document.querySelector(".project-input-container");
     let projectName = document.createElement("input");
     let projectDescription = document.createElement("input");
@@ -16,6 +17,8 @@ function createInputsForAddProject() {
     projectInputContainer.appendChild(projectDescription);
     projectInputContainer.appendChild(submitProject);
     projectName.focus();
+    
+    addProject.innerHTML = "";
 
 
     document.addEventListener("click", (e) => {
@@ -31,6 +34,8 @@ function createInputsForAddProject() {
 
         let projectTasksContainer = document.querySelector(".project-tasks-container");
         projectTasksContainer.innerHTML = "";
+
+        addProject.innerHTML = `<span class="add-project">+ Add project</span>`;
 
         user.createTaskArray();
         user.createDateArray();
