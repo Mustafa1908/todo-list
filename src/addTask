@@ -4,6 +4,7 @@ import calculateTimeBetweenDates from "./calculateTimeBetweenDates";
 
 
 function addTask(projectIndex) {
+      let addTask = document.querySelector(".add-task");
       let projectInputContainer = document.querySelector("#add-task-container");
       let taskInput = document.createElement("input");
       let dateInput = document.createElement("input");
@@ -17,7 +18,8 @@ function addTask(projectIndex) {
       projectInputContainer.appendChild(dateInput);
       projectInputContainer.appendChild(submitTask);
       taskInput.focus();
-      
+
+      addTask.innerHTML = "";
 
       document.addEventListener("click", (e) => {
         const target = e.target.closest("#submit-task"); 
@@ -36,6 +38,8 @@ function addTask(projectIndex) {
           user.addDateToArray(projectIndex, differenceBetweenDates);
           user.renderToDoTask(projectIndex, user.showTaskArrayLength(projectIndex));
           taskInput.value = ""
+
+          addTask.innerHTML = `<span class="add-task">+ Add Task</span>` 
 
           taskInput.remove();
           dateInput.remove();
