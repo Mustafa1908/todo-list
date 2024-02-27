@@ -1,6 +1,7 @@
 let taskArray = [];
 let dateArray = [];
 let rawDateArray = [];
+let projectArray = [];
 
 export default class CreateToDoTask {
     constructor(task) {
@@ -68,6 +69,32 @@ export default class CreateToDoTask {
       dateArray[projectArrayLocation].splice(projectIndex, 1);
     }
 
+    addProjectNameToArray(projectName) {
+      projectArray.push(projectName);
+    }
+
+    showProjectNameArray() {
+      return console.log(projectArray);
+    }
+
+    renderProjectName(newProjectName) {
+      let projectNameArrayLength = projectArray.length;
+      let projectList = document.querySelector(".projects-list");
+      projectList.innerHTML = "";
+
+      for (let i = 0; i < projectNameArrayLength; i++) {
+        let projectName = document.createElement("span");
+
+        projectName.innerHTML = `
+        <span class="${i} project-names">${newProjectName}</span>
+        `
+
+        projectName.dataset.index = i;
+
+        projectList.appendChild(projectName);
+      }
+    }
+    
 
     renderToDoTask(projectIndex, taskLength) {
       let taskArrayLength = taskLength;
