@@ -28,7 +28,7 @@ function addTask(projectIndex) {
           if (taskInput.value === "") {
             return;
           }
-
+          
           let differenceBetweenDates = calculateTimeBetweenDates(dateInput.value);
           let projectTasksContainer = document.querySelector(".project-tasks-container");
           
@@ -36,6 +36,7 @@ function addTask(projectIndex) {
 
           user.addTaskToArray(projectIndex, taskInput.value);
           user.addDateToArray(projectIndex, differenceBetweenDates);
+          user.addRawDateToArray(projectIndex, dateInput.value);
           user.renderToDoTask(projectIndex, user.showTaskArrayLength(projectIndex));
           taskInput.value = ""
 
@@ -44,7 +45,6 @@ function addTask(projectIndex) {
           taskInput.remove();
           dateInput.remove();
           submitTask.remove();
-          user.showDateArray();
         }
       });
 }
