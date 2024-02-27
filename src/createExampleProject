@@ -13,12 +13,14 @@ function createExampleProject() {
 
     user.createTaskArray();
     user.createDateArray();
+    user.createRawDateArray();
 
-    let dateExample = calculateTimeBetweenDates("2024/02/19");
+    let dateExample = calculateTimeBetweenDates("2024-02-19");
 
     for (let i = 1; i <= 5; i++) {
         user.addTaskToArray(0, "Example Task" + i);
         user.addDateToArray(0, dateExample);
+        user.addRawDateToArray(0, "2024-02-19");
       }
         
     user.renderToDoTask(0, 5);
