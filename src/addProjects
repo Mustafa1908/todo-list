@@ -1,5 +1,6 @@
 import showProjects from "./showProjects";
 import showProjectWhenCreatingProject from "./showProjectWhenCreatingProject";
+import { user } from ".";
 
 
 let i = 0;
@@ -13,13 +14,15 @@ function addProjects(projectNames, projectDescription) {
     let projectName = document.createElement("span");
 
     projectName.innerHTML = `
-    <span class="${i}">${projectNames}</span>
+    <span class="${i} project-names">${projectNames}</span>
     `
 
     projectName.dataset.index = i;
 
     projectList.appendChild(projectName);
     
+    user.addProjectNameToArray(projectNames);
+
     showProjectWhenCreatingProject(projectName, projectDescription);
     showProjects(projectName, projectDescription, i);
     i++;
