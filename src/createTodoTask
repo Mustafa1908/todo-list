@@ -1,5 +1,6 @@
 let taskArray = [];
 let dateArray = [];
+let rawDateArray = [];
 
 export default class CreateToDoTask {
     constructor(task) {
@@ -16,6 +17,15 @@ export default class CreateToDoTask {
       taskArray[projectIndexValue].push(task);
     }
     
+    modifyTaskArray(projectIndexValue, taskLocation, newTask) {
+      taskArray[projectIndexValue][taskLocation] = newTask;
+    }
+
+
+    returnTaskValue(projectIndex, taskLocation) {
+      return taskArray[projectIndex][taskLocation];
+    }
+
 
     showTaskArrayLength(projectIndex) {
       let projectTaskArrayLength = taskArray[projectIndex];
@@ -31,6 +41,27 @@ export default class CreateToDoTask {
       dateArray[projectIndexValue].push(date);
     }
 
+    modifyDateArray(projectIndexValue, dateLocation, newDatevalue) {
+      dateArray[projectIndexValue][dateLocation] = newDatevalue;
+    } 
+
+
+    returnDateValue(projectIndex, dateLocation) {
+      return dateArray[projectIndex][dateLocation];
+    }
+    
+    createRawDateArray() {
+      let newRawDateArray = [];
+      rawDateArray.push(newRawDateArray);
+    }
+
+    addRawDateToArray(projectIndexValue, rawDate) { 
+      rawDateArray[projectIndexValue].push(rawDate);
+    }
+
+    returnRawDateValue(projectIndex, rawDateLocation) {
+      return rawDateArray[projectIndex][rawDateLocation];
+    }
 
     removeTaskAndDateFromArray(projectArrayLocation, projectIndex) {
       taskArray[projectArrayLocation].splice(projectIndex, 1);
@@ -53,7 +84,7 @@ export default class CreateToDoTask {
         taskElement.innerHTML = `<span class="project-task">${taskArray[projectIndex][i]}</span>`
         dateInput.innerHTML = `<span class="project-task"> ${dateArray[projectIndex][i]}</span>`
 
-        editIcon.innerHTML = `<span class="material-symbols-outlined edit-icon">edit</span>`
+        editIcon.innerHTML = `<span class="material-symbols-outlined task-edit-icon">edit</span>`
         deleteIcon.innerHTML = `<span class="material-symbols-outlined trash-icon">delete</span>`
 
         taskInfosContainer.dataset.index = i;
@@ -68,6 +99,3 @@ export default class CreateToDoTask {
     }
  
   }
-
-
-
