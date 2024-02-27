@@ -1,0 +1,48 @@
+import getProjectIndexValue from "./getProjectIndexValue";
+import { user } from ".";
+import calculateTimeBetweenDates from "./calculateTimeBetweenDates";
+
+
+function editTask(taskInfoContainer, projectIndex) {
+    taskInfoContainer.innerText = "";
+    let projectTasksContainer = document.querySelector(".project-tasks-container");
+    let taskInfoContainerIndex = getProjectIndexValue(taskInfoContainer);
+
+    let taskInput = document.createElement("input");
+    let dateInput = document.createElement("input");
+    let submitTask = document.createElement("submit-task");
+      
+    taskInput.type = "text";
+    dateInput.type = "date";
+    
+    taskInput.value = user.returnTaskValue(projectIndex, taskInfoContainerIndex);
+    dateInput.value = user.returnRawDateValue(projectIndex, taskInfoContainerIndex);
+
+    submitTask.innerHTML = `<button type="submit" id="submit-task">submit</button>`;
+
+
+    taskInfoContainer.appendChild(taskInput);
+    taskInfoContainer.appendChild(dateInput);
+    taskInfoContainer.appendChild(submitTask);
+
+    taskInput.focus();
+
+
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest("#submit-task"); 
+      if(target){
+        let taskArrayLength = user.showTaskArrayLength(projectIndex);
+        let dateValue = calculateTimeBetweenDates(dateInput.value);
+
+        user.modifyTaskArray(projectIndex, taskInfoContainerIndex, taskInput.value);
+        user.modifyDateArray(projectIndex, taskInfoContainerIndex, dateValue);
+
+        projectTasksContainer.innerHTML = "";
+        user.renderToDoTask(projectIndex, taskArrayLength);
+      }
+    });
+}
+
+
+
+export default editTask
