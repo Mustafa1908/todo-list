@@ -39,6 +39,7 @@ function createInputsForAddProject() {
 
         user.createTaskArray();
         user.createDateArray();
+        user.createRawDateArray();
       }
     });
 }
