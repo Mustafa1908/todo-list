@@ -38,12 +38,6 @@ document.addEventListener("click", (e) => {
   });
 
 
-  export function setProjectIndex(currentProjectIndex) {
-    projectIndex = currentProjectIndex;
-  }
-  
-
-
 
   document.addEventListener("click", (e) => {
     const target = e.target.closest(".trash-icon");
@@ -54,11 +48,13 @@ document.addEventListener("click", (e) => {
   });
 
 
-
-  document.addEventListener("DOMContentLoaded", () => {
-    editTask();
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest(".task-edit-icon");
+    const taskContainer = e.target.closest(".task-infos-container");
+    if(target) {
+      editTask(taskContainer, projectIndex);
+    }
   });
-
 
 
 export default showProjects
