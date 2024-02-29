@@ -10,13 +10,11 @@ import "./styles.css"
 
 
 export const user = new CreateToDoTask("user");
-export let projectIndex = -1;
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
   createExampleProject();
-  projectIndex++;
 }) 
 
 
@@ -24,26 +22,30 @@ document.addEventListener("click", (e) => {
     const target = e.target.closest(".add-project"); 
     if(target){
         createInputForAddProject();
-        projectIndex++;
+        user.incrementCurrentIndexValue();
     }
   });
+
 
 
 
 document.addEventListener("click", (e) => {
-  const target = e.target.closest(".project-edit-icon");
-  if(target) {
-    editProjectNameDescription();
-  }
-})
-
-
-  document.addEventListener("click", (e) => {
-    const target = e.target.closest(".add-task");
-    if(target){
-      addTask(projectIndex);
+    const target = e.target.closest(".project-edit-icon");
+    if(target) {
+      editProjectNameDescription();
     }
-  });
+  })
+  
+
+
+
+document.addEventListener("click", (e) => {
+        const target = e.target.closest(".add-task");
+        if(target){
+          addTask(user.returnCurrentIndexValue());
+        }
+      });
+
 
 
 
@@ -51,7 +53,7 @@ document.addEventListener("click", (e) => {
     const target = e.target.closest(".trash-icon");
     if(target) {
       const taskContainer = e.target.closest(".task-infos-container");
-      deleteTask(projectIndex, taskContainer);
+      deleteTask(user.returnCurrentIndexValue(), taskContainer);
     }
   });
 
@@ -60,7 +62,7 @@ document.addEventListener("click", (e) => {
     const target = e.target.closest(".task-edit-icon");
     const taskContainer = e.target.closest(".task-infos-container");
     if(target) {
-      editTask(taskContainer, projectIndex);
+      editTask(taskContainer, user.returnCurrentIndexValue());
     }
   });
 
