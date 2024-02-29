@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo list</title>
+    <title>To-do List</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="main.js"></script>
 </head>
 <body>
@@ -23,14 +25,20 @@
         </aside>
         <main>
             <div class="project-display">
-                <span class="project-name"></span>
-                <span class="project-description"></span>
+                <div class="project-name-description-edit-container">
+                    <div class="project-name-description-container">
+                        <span class="project-name"></span>
+                        <span class="project-description"></span>
+                    </div>
+                    <div class="edit-project-container">
+                        <span class="material-symbols-outlined project-edit-icon">edit</span>
+                    </div>
+                </div>
                 <div class="long-line"></div>
                 <div class="project-tasks-container"></div>
-            </div>
-            <div id="add-task-container"></div>
-            <span class="add-task">+ Add Task</span>
-            <div class="todo-tasks"></div>
+                <div id="add-task-container"></div>
+                <span class="add-task">+ Add Task</span>
+                <div class="todo-tasks"></div>
         </main>
     </div>
 </body>
