@@ -9,22 +9,33 @@ function addProjects(projectNames, projectDescription) {
     if (projectNames === "") {
         return;
     }
-
+    
     let projectList = document.querySelector(".projects-list");
+    let projectNameContainer = document.createElement("div");
+    projectNameContainer.className = "projects-names-container";
     let projectName = document.createElement("span");
+    let deleteIcon = document.createElement("span");
 
     projectName.innerHTML = `
     <span class="${i} project-names">${projectNames}</span>
     `
+    deleteIcon.innerHTML = `<span class="material-symbols-outlined project-trash-icon">delete</span>`
     
+    projectNameContainer.dataset.index = i;
     projectName.dataset.index = i;
     projectName.onclick = showProjects(projectName, projectDescription);
-    projectList.appendChild(projectName);
+
+    projectNameContainer.appendChild(projectName);
+    projectNameContainer.appendChild(deleteIcon);
     
+    projectList.appendChild(projectNameContainer);
+
     user.addProjectNameToArray(projectNames);
+    user.addProjectDescriptionToArray(projectDescription);
+    user.showProjectDescriptionArray();
 
     showProjectWhenCreatingProject(projectName, projectDescription);
-    showProjects(projectName, projectDescription);
+    showProjects(projectName);
     i++;
 }
 
