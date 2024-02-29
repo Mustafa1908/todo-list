@@ -5,6 +5,7 @@ let taskArray = [];
 let dateArray = [];
 let rawDateArray = [];
 let projectArray = [];
+let projectDescriptionAray = [];
 let currentIndexArray = [0];
 
 
@@ -97,9 +98,37 @@ export default class CreateToDoTask {
 
     modifyProjectName(projectIndexValue, newProjectName) {
       projectArray[projectIndexValue] = newProjectName;
-    } 
+    }
+    
+    removeProjectName(projectIndex) {
+      projectArray.splice(projectIndex, 1);
+    }
 
-    renderProjectName(projectDescription) {
+    returnProjectArrayLength() {
+      return projectArray.length;
+    }
+
+    showProjectArray() {
+      return alert(projectArray);
+    }
+
+    addProjectDescriptionToArray(projectDescription) {
+      projectDescriptionAray.push(projectDescription);
+    }
+
+    returnProjectDescriptionValue(projectIndex) {
+      return projectDescriptionAray[projectIndex];
+    }
+
+    modifyProjectDescription(projectIndex, newProjectDescription) {
+      projectDescriptionAray[projectIndex] = newProjectDescription;
+    }
+
+    showProjectDescriptionArray() {
+      return console.log(projectDescriptionAray);
+    }
+
+    renderProjectName(projectIndex) {
       let projectNameArrayLength = projectArray.length;
       let projectList = document.querySelector(".projects-list");
       projectList.innerHTML = "";
@@ -112,7 +141,9 @@ export default class CreateToDoTask {
         `
 
         projectName.dataset.index = i;
-        projectName.onclick = showProjects(projectName, projectDescription);
+
+        projectName.onclick = showProjects(projectName, projectDescriptionAray[projectIndex]);
+        
         projectList.appendChild(projectName);
       }
     }
