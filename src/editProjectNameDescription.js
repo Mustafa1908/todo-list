@@ -35,10 +35,11 @@ function editProjectNameDescription() {
             projectEditIcon.innerHTML = `<span class="material-symbols-outlined project-edit-icon">edit</span>`
 
             projectDisplayName.innerText = projectNameInput.value;
-            projectDisplayDescription.innerText = projectDescriptionInput.value;
+            user.modifyProjectDescription(user.returnCurrentIndexValue(), projectDescriptionInput.value);
+            projectDisplayDescription.innerText = user.returnProjectDescriptionValue(user.returnCurrentIndexValue());
             user.modifyProjectName(user.returnCurrentIndexValue(), projectNameInput.value);
-
-            user.renderProjectName(projectDescriptionInput.value)
+  
+            user.renderProjectName(user.returnCurrentIndexValue());
         }
       });
 }
