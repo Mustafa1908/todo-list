@@ -9,22 +9,22 @@ function addProjects(projectNames, projectDescription) {
     if (projectNames === "") {
         return;
     }
-    
+
     let projectList = document.querySelector(".projects-list");
     let projectName = document.createElement("span");
 
     projectName.innerHTML = `
     <span class="${i} project-names">${projectNames}</span>
     `
-
+    
     projectName.dataset.index = i;
-
+    projectName.onclick = showProjects(projectName, projectDescription);
     projectList.appendChild(projectName);
     
     user.addProjectNameToArray(projectNames);
 
     showProjectWhenCreatingProject(projectName, projectDescription);
-    showProjects(projectName, projectDescription, i);
+    showProjects(projectName, projectDescription);
     i++;
 }
 
