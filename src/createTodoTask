@@ -1,13 +1,34 @@
+import showProjects from ".";
+
+
 let taskArray = [];
 let dateArray = [];
 let rawDateArray = [];
 let projectArray = [];
+let currentIndexArray = [0];
+
+
 
 export default class CreateToDoTask {
     constructor(task) {
       this.task = task;
     }
-    
+
+    addCurrentIndexToArray(currentIndex) {
+      currentIndexArray.push(currentIndex);
+    } 
+
+    incrementCurrentIndexValue() {
+      let currentIndexValueLength = currentIndexArray.length - 1;
+      currentIndexArray[currentIndexValueLength] += 1;
+    }
+
+    returnCurrentIndexValue() {
+      let currentIndexValueLength = currentIndexArray.length - 1;
+      return currentIndexArray[currentIndexValueLength];
+    }
+
+
     createTaskArray () {
       let newTaskArray = [];
       taskArray.push(newTaskArray);
@@ -72,12 +93,13 @@ export default class CreateToDoTask {
     addProjectNameToArray(projectName) {
       projectArray.push(projectName);
     }
+    
 
-    showProjectNameArray() {
-      return console.log(projectArray);
-    }
+    modifyProjectName(projectIndexValue, newProjectName) {
+      projectArray[projectIndexValue] = newProjectName;
+    } 
 
-    renderProjectName(newProjectName) {
+    renderProjectName(projectDescription) {
       let projectNameArrayLength = projectArray.length;
       let projectList = document.querySelector(".projects-list");
       projectList.innerHTML = "";
@@ -86,15 +108,15 @@ export default class CreateToDoTask {
         let projectName = document.createElement("span");
 
         projectName.innerHTML = `
-        <span class="${i} project-names">${newProjectName}</span>
+        <span class="${i} project-names">${projectArray[i]}</span>
         `
 
         projectName.dataset.index = i;
-
+        projectName.onclick = showProjects(projectName, projectDescription);
         projectList.appendChild(projectName);
       }
     }
-    
+
 
     renderToDoTask(projectIndex, taskLength) {
       let taskArrayLength = taskLength;
