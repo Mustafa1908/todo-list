@@ -1,19 +1,21 @@
-import { user } from ".";
+import showProjects, { user } from ".";
 
 function editProjectNameDescription() {
     let projectDisplayName = document.querySelector(".project-name");
     let projectDisplayDescription = document.querySelector(".project-description");
+    let projectEditIcon = document.querySelector(".project-edit-icon");
 
     let projectName = projectDisplayName.innerText;
     let projectDescription = projectDisplayDescription.innerText;
 
     projectDisplayName.innerHTML = "";
     projectDisplayDescription.innerHTML = "";
+    projectEditIcon.innerHTML = "";
 
     let projectNameInput = document.createElement("input");
     let projectDescriptionInput = document.createElement("input");
     let submitChanges = document.createElement("button");
-      
+
     projectNameInput.type = "text";
     projectDescriptionInput.type = "text";
     
@@ -21,7 +23,7 @@ function editProjectNameDescription() {
     projectDescriptionInput.value = projectDescription;
 
     submitChanges.innerHTML = `<button type="submit" id="submit-changes">submit</button>`;
-
+  
 
     projectDisplayName.appendChild(projectNameInput);
     projectDisplayDescription.appendChild(projectDescriptionInput);
@@ -30,13 +32,13 @@ function editProjectNameDescription() {
     document.addEventListener("click", (e) => {
         const target = e.target.closest("#submit-changes"); 
         if(target){
-            projectDisplayName.innerHTML = "";
-            projectDisplayDescription.innerHTML = "";
+            projectEditIcon.innerHTML = `<span class="material-symbols-outlined project-edit-icon">edit</span>`
 
             projectDisplayName.innerText = projectNameInput.value;
             projectDisplayDescription.innerText = projectDescriptionInput.value;
+            user.modifyProjectName(user.returnCurrentIndexValue(), projectNameInput.value);
 
-            user.renderProjectName(projectNameInput.value);
+            user.renderProjectName(projectDescriptionInput.value)
         }
       });
 }
