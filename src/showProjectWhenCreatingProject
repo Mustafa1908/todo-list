@@ -1,10 +1,11 @@
- function showProjectWhenCreatingProject(projectName, projectDescription) {
-        let projectDisplayName = document.querySelector(".project-name");
-        let projectDisplayDescription = document.querySelector(".project-description");
-        
-        projectDisplayName.innerHTML = `<span class="project-name">${projectName.innerText}</span>`;
-        projectDisplayDescription.innerHTML = `<span class="project-description">${projectDescription}</span>`;
-    }
+function showProjectWhenCreatingProject(projectName, projectDescription) {
+    let projectDisplayName = document.querySelector(".project-name");
+    let projectDisplayDescription = document.querySelector(".project-description");
+    
+    projectDisplayName.innerHTML = `<span class="project-name">${projectName.innerText}</span>`;
+    projectDisplayDescription.innerHTML = `<span class="project-description">${projectDescription}</span>`;
+}
 
 
 export default showProjectWhenCreatingProject
+
