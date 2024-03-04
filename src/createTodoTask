@@ -1,6 +1,5 @@
 import showProjects from ".";
 
-
 let taskArray = [];
 let dateArray = [];
 let rawDateArray = [];
@@ -9,12 +8,7 @@ let projectDescriptionAray = [];
 let currentIndexArray = [0];
 
 
-
 export default class CreateToDoTask {
-    constructor(task) {
-      this.task = task;
-    }
-
     addCurrentIndexToArray(currentIndex) {
       currentIndexArray.push(currentIndex);
     } 
@@ -28,6 +22,11 @@ export default class CreateToDoTask {
       let currentIndexValueLength = currentIndexArray.length - 1;
       return currentIndexArray[currentIndexValueLength];
     }
+
+    removeIndexValue(projectIndex)  {
+      currentIndexArray.splice(projectIndex, 1);
+    }
+
 
 
     createTaskArray () {
@@ -49,11 +48,15 @@ export default class CreateToDoTask {
       return taskArray[projectIndex][taskLocation];
     }
 
-
-    showTaskArrayLength(projectIndex) {
-      let projectTaskArrayLength = taskArray[projectIndex];
-      return projectTaskArrayLength.length;
+    removeTaskArray(projectIndex) {
+      taskArray.splice(projectIndex, 1);
     }
+
+
+
+
+
+
 
     createDateArray() {
       let newDateArray = [];
@@ -72,6 +75,15 @@ export default class CreateToDoTask {
     returnDateValue(projectIndex, dateLocation) {
       return dateArray[projectIndex][dateLocation];
     }
+
+    removeDateArray(projectIndex) {
+      dateArray.splice(projectIndex, 1);
+    }
+
+
+
+
+
     
     createRawDateArray() {
       let newRawDateArray = [];
@@ -91,26 +103,63 @@ export default class CreateToDoTask {
       dateArray[projectArrayLocation].splice(projectIndex, 1);
     }
 
+
+
+
+
+
+
+
     addProjectNameToArray(projectName) {
       projectArray.push(projectName);
     }
-    
 
     modifyProjectName(projectIndexValue, newProjectName) {
       projectArray[projectIndexValue] = newProjectName;
     }
+
+    returnProjectNameValue(projectIndex) {
+      return projectArray[projectIndex];
+    }
+
+    returnLastProjectNameValue() {
+      return projectArray[projectArray.length - 1];
+    }
     
+    removeDelete(projectText) {
+      let textToCorrect = projectText,
+      correctedText = textToCorrect.replace(/\ndelete/g, "");
+      return correctedText
+    }
+
     removeProjectName(projectIndex) {
       projectArray.splice(projectIndex, 1);
+    }
+
+    removeUndefinedIndex() {
+      for(let i = 0; i < projectArray.length; i++) {
+        if (projectArray[i] === undefined) {
+          projectArray.splice(projectArray[i]);
+        }
+      }
     }
 
     returnProjectArrayLength() {
       return projectArray.length;
     }
 
-    showProjectArray() {
-      return alert(projectArray);
-    }
+    returnProjectArrayIndex(arrayName) {
+      return projectArray.indexOf(arrayName);
+    } 
+
+
+
+
+
+
+
+
+
 
     addProjectDescriptionToArray(projectDescription) {
       projectDescriptionAray.push(projectDescription);
@@ -124,35 +173,54 @@ export default class CreateToDoTask {
       projectDescriptionAray[projectIndex] = newProjectDescription;
     }
 
-    showProjectDescriptionArray() {
-      return console.log(projectDescriptionAray);
+    removeProjectDescription(projectIndex) {
+      projectDescriptionAray.splice(projectIndex, 1);
     }
 
-    renderProjectName(projectIndex) {
+
+
+
+
+
+
+
+    renderProjectName() {
       let projectNameArrayLength = projectArray.length;
       let projectList = document.querySelector(".projects-list");
       projectList.innerHTML = "";
 
-      for (let i = 0; i < projectNameArrayLength; i++) {
+      for(let i = 0; i < projectNameArrayLength; i++) {
+        
+        let projectNameContainer = document.createElement("div");
+        projectNameContainer.className = "projects-names-container";
         let projectName = document.createElement("span");
+        let deleteIcon = document.createElement("span");
 
         projectName.innerHTML = `
         <span class="${i} project-names">${projectArray[i]}</span>
         `
-
-        projectName.dataset.index = i;
-
-        projectName.onclick = showProjects(projectName, projectDescriptionAray[projectIndex]);
+        deleteIcon.innerHTML = `<span class="material-symbols-outlined project-trash-icon">delete</span>`
         
-        projectList.appendChild(projectName);
+        projectNameContainer.dataset.index = i;
+        projectName.dataset.index = i;
+        projectName.onclick = showProjects(projectName, projectDescriptionAray[i]);
+
+        projectNameContainer.appendChild(projectName);
+        projectNameContainer.appendChild(deleteIcon);
+        
+        projectList.appendChild(projectNameContainer);
       }
     }
 
 
+    
+
+
     renderToDoTask(projectIndex, taskLength) {
       let taskArrayLength = taskLength;
+      let projectTasksContainer = document.querySelector(".project-tasks-container");
+      projectTasksContainer.innerHTML = "";
       for(let i = 0; i < taskArrayLength; i++) {
-        let projectTasksContainer = document.querySelector(".project-tasks-container");
         let taskInfosContainer = document.createElement("div");
         taskInfosContainer.className = "task-infos-container";
         let taskElement = document.createElement("span");
