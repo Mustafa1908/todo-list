@@ -21,7 +21,7 @@ function createInputsForAddProject() {
     addProject.innerHTML = "";
 
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function submitProjects(e)  {
       const target = e.target.closest("#submit-project"); 
       if(target){
         e.preventDefault();
@@ -40,6 +40,8 @@ function createInputsForAddProject() {
         user.createTaskArray();
         user.createDateArray();
         user.createRawDateArray();
+
+        document.removeEventListener("click", submitProjects);
       }
     });
 }
