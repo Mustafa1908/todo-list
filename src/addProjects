@@ -32,10 +32,8 @@ function addProjects(projectNames, projectDescription) {
 
     user.addProjectNameToArray(projectNames);
     user.addProjectDescriptionToArray(projectDescription);
-    user.showProjectDescriptionArray();
 
     showProjectWhenCreatingProject(projectName, projectDescription);
-    showProjects(projectName);
     i++;
 }
 
