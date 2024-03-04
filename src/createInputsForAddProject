@@ -24,6 +24,10 @@ function createInputsForAddProject() {
     document.addEventListener("click", function submitProjects(e)  {
       const target = e.target.closest("#submit-project"); 
       if(target){
+        if (projectName.value === "" || projectDescription.value === "") {
+          return 
+        }
+
         e.preventDefault();
         addProjects(projectName.value, projectDescription.value);
         projectName.value = "";
