@@ -1,11 +1,10 @@
 import { user } from "."
-import getProjectIndexValue from "./getProjectIndexValue";
 
 
 
 function showProjects(projectName) {
-    projectName.addEventListener('click', e => {
-        let indexProject = getProjectIndexValue(projectName);
+    projectName.addEventListener('click', function addProjects(e)  {
+        let indexProject = user.returnProjectArrayIndex(projectName.innerText);
         user.addCurrentIndexToArray(indexProject);
         let taskArrayLength = user.showTaskArrayLength(indexProject);
         user.renderToDoTask(indexProject, taskArrayLength);
@@ -16,10 +15,10 @@ function showProjects(projectName) {
         projectTasksContainer.innerHTML = "";
         user.renderToDoTask(indexProject, taskArrayLength);
         var elem = e.target.closest("[class]");
-
         if (elem && elem.getAttribute('class') !== 'root') {
         }  projectDisplayName.innerHTML = `<span class="project-name">${projectName.innerText}</span>`;
         projectDisplayDescription.innerHTML = `<span class="project-description">${user.returnProjectDescriptionValue(indexProject)}</span>`;
+        document.removeEventListener("click", addProjects);
     });
 }
 
