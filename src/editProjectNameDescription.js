@@ -41,10 +41,10 @@ function editProjectNameDescription() {
                 user.modifyProjectDescription(0, projectDescriptionInput.value);
                 projectDisplayDescription.innerText = user.returnProjectDescriptionValue(0);
 
+                user.addCurrentIndexToArray(user.returnProjectArrayIndex(projectName));
                 user.modifyProjectName(0, projectNameInput.value);
                 user.renderProjectName();
                 document.removeEventListener("click", submitChanges);
-                user.showProjectDescriptionArray()
                 return;
             }
 
@@ -52,9 +52,10 @@ function editProjectNameDescription() {
             projectDisplayName.innerText = projectNameInput.value;
             user.modifyProjectDescription(user.returnProjectArrayIndex(projectName), projectDescriptionInput.value);
             projectDisplayDescription.innerText = user.returnProjectDescriptionValue(user.returnProjectArrayIndex(projectName));
-            user.showProjectDescriptionArray()
-
+           
+            user.addCurrentIndexToArray(user.returnProjectArrayIndex(projectName));
             user.modifyProjectName(user.returnProjectArrayIndex(projectName), projectNameInput.value);
+            user.renderProjectName()
             document.removeEventListener("click", submitChanges);
         }
       });
