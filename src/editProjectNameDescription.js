@@ -1,4 +1,6 @@
-import showProjects, { user } from ".";
+import { user } from ".";
+
+
 
 function editProjectNameDescription() {
     let projectDisplayName = document.querySelector(".project-name");
@@ -29,17 +31,31 @@ function editProjectNameDescription() {
     projectDisplayDescription.appendChild(projectDescriptionInput);
     projectDisplayDescription.appendChild(submitChanges);
 
-    document.addEventListener("click", (e) => {
+
+    document.addEventListener("click", function submitChanges(e)  {
         const target = e.target.closest("#submit-changes"); 
         if(target){
-            projectEditIcon.innerHTML = `<span class="material-symbols-outlined project-edit-icon">edit</span>`
+            if (user.returnProjectArrayIndex(projectName) == 0) {
+                projectEditIcon.innerHTML = `<span class="material-symbols-outlined project-edit-icon">edit</span>`
+                projectDisplayName.innerText = projectNameInput.value;
+                user.modifyProjectDescription(0, projectDescriptionInput.value);
+                projectDisplayDescription.innerText = user.returnProjectDescriptionValue(0);
 
+                user.modifyProjectName(0, projectNameInput.value);
+                user.renderProjectName();
+                document.removeEventListener("click", submitChanges);
+                user.showProjectDescriptionArray()
+                return;
+            }
+
+            projectEditIcon.innerHTML = `<span class="material-symbols-outlined project-edit-icon">edit</span>`
             projectDisplayName.innerText = projectNameInput.value;
-            user.modifyProjectDescription(user.returnCurrentIndexValue(), projectDescriptionInput.value);
-            projectDisplayDescription.innerText = user.returnProjectDescriptionValue(user.returnCurrentIndexValue());
-            user.modifyProjectName(user.returnCurrentIndexValue(), projectNameInput.value);
-  
-            user.renderProjectName(user.returnCurrentIndexValue());
+            user.modifyProjectDescription(user.returnProjectArrayIndex(projectName), projectDescriptionInput.value);
+            projectDisplayDescription.innerText = user.returnProjectDescriptionValue(user.returnProjectArrayIndex(projectName));
+            user.showProjectDescriptionArray()
+
+            user.modifyProjectName(user.returnProjectArrayIndex(projectName), projectNameInput.value);
+            document.removeEventListener("click", submitChanges);
         }
       });
 }
