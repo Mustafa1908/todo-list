@@ -28,6 +28,11 @@ function addTask(projectIndex) {
           if (taskInput.value === "") {
             return;
           }
+
+          if (dateInput.value === "") {
+            return;
+          }
+          
           
           let differenceBetweenDates = calculateTimeBetweenDates(dateInput.value);
           let projectTasksContainer = document.querySelector(".project-tasks-container");
