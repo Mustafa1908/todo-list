@@ -19,7 +19,6 @@ function deleteProject(projectName) {
     user.renderProjectName();
     showProjectWhenDeletingProject(user.returnProjectNameValue(0), user.returnProjectDescriptionValue(0))
     user.renderToDoTask(0, user.showTaskArrayLength(0));
-    user.showProjectArray()
 }
 
 
