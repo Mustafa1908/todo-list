@@ -9,13 +9,19 @@ function deleteProject(projectName) {
     }
     let projectNameText = user.removeDelete(projectName.innerText);
     let projectIndexValue = user.returnProjectArrayIndex(projectNameText);
-
+    
     user.removeProjectName(projectIndexValue);
     user.removeProjectDescription(projectIndexValue)
     user.removeTaskArray(projectIndexValue)
-    user.removeDateArray(projectIndexValue);    
+    user.removeDateArray(projectIndexValue);
+    user.addCurrentIndexToArray(projectIndexValue)    
 
-
+    if (projectIndexValue > 0) {
+        user.renderProjectName();
+        showProjectWhenDeletingProject(user.returnProjectNameValue(projectIndexValue - 1), user.returnProjectDescriptionValue(projectIndexValue - 1))
+        user.renderToDoTask(projectIndexValue - 1, user.showTaskArrayLength(projectIndexValue - 1));
+        return;
+    }
     user.renderProjectName();
     showProjectWhenDeletingProject(user.returnProjectNameValue(0), user.returnProjectDescriptionValue(0))
     user.renderToDoTask(0, user.showTaskArrayLength(0));
