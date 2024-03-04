@@ -21,7 +21,7 @@ function addTask(projectIndex) {
 
       addTask.innerHTML = "";
 
-      document.addEventListener("click", (e) => {
+      document.addEventListener("click", function submitTasks(e)  {
         const target = e.target.closest("#submit-task"); 
         if(target){
           e.preventDefault();
@@ -45,6 +45,8 @@ function addTask(projectIndex) {
           taskInput.remove();
           dateInput.remove();
           submitTask.remove();
+
+          document.removeEventListener("click", submitTasks);
         }
       });
 }
