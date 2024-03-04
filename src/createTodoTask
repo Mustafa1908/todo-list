@@ -27,6 +27,10 @@ export default class CreateToDoTask {
       currentIndexArray.splice(projectIndex, 1);
     }
 
+    showCurrentIndexValue() {
+      return console.log(currentIndexArray)
+    }
+
 
 
     createTaskArray () {
@@ -43,6 +47,9 @@ export default class CreateToDoTask {
       taskArray[projectIndexValue][taskLocation] = newTask;
     }
 
+    showTaskArrayLength(projectIndex) {
+       let projectTaskArrayLength = taskArray[projectIndex]; return projectTaskArrayLength.length; 
+      }
 
     returnTaskValue(projectIndex, taskLocation) {
       return taskArray[projectIndex][taskLocation];
@@ -51,7 +58,6 @@ export default class CreateToDoTask {
     removeTaskArray(projectIndex) {
       taskArray.splice(projectIndex, 1);
     }
-
 
 
 
@@ -151,7 +157,6 @@ export default class CreateToDoTask {
     returnProjectArrayIndex(arrayName) {
       return projectArray.indexOf(arrayName);
     } 
-
 
 
 
