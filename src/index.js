@@ -6,6 +6,7 @@ import editTask from "./editTask";
 import addTask from "./addTask";
 import showProjects from "./showProjects";
 import editProjectNameDescription from "./editProjectNameDescription";
+import deleteProject from "./deleteProject";
 import "./styles.css"
 
 
@@ -28,7 +29,6 @@ document.addEventListener("click", (e) => {
 
 
 
-
 document.addEventListener("click", (e) => {
     const target = e.target.closest(".project-edit-icon");
     if(target) {
@@ -36,6 +36,17 @@ document.addEventListener("click", (e) => {
     }
   })
   
+
+
+document.addEventListener("click", (e) => {
+  const target = e.target.closest(".project-trash-icon");
+  const projectNameContainer = e.target.closest(".projects-names-container");
+  const projectName = projectNameContainer.childNodes[0];
+  if(target) {
+    deleteProject(projectNameContainer, projectName);
+  }
+})
+
 
 
 
