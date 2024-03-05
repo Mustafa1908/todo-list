@@ -5,7 +5,6 @@ let dateArray = [];
 let rawDateArray = [];
 let projectArray = [];
 let projectDescriptionAray = [];
-let checkTaskArray = [];
 let currentIndexArray = [0];
 
 
@@ -34,7 +33,7 @@ export default class CreateToDoTask {
 
 
     
-
+   
 
     
 
