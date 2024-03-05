@@ -30,7 +30,7 @@ function addTask(projectIndex) {
           }
 
           if (dateInput.value === "") {
-            return;
+            return; 
           }
           
           

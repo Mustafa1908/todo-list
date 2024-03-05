@@ -5,6 +5,7 @@ let dateArray = [];
 let rawDateArray = [];
 let projectArray = [];
 let projectDescriptionAray = [];
+let checkTaskArray = [];
 let currentIndexArray = [0];
 
 
@@ -30,6 +31,15 @@ export default class CreateToDoTask {
     showCurrentIndexValue() {
       return console.log(currentIndexArray)
     }
+
+
+    
+
+
+    
+
+
+
 
 
 
@@ -232,6 +242,7 @@ export default class CreateToDoTask {
         let dateInput = document.createElement("span")
         let editIcon = document.createElement("span");
         let deleteIcon = document.createElement("span");
+
 
         taskInfosContainer.innerHTML = `<div class="task-infos-container"></div>`
         taskElement.innerHTML = `<span class="project-task">${taskArray[projectIndex][i]}</span>`

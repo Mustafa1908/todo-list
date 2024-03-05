@@ -60,6 +60,11 @@ document.addEventListener("click", (e) => {
 
 
 
+
+
+
+
+
   document.addEventListener("click", (e) => {
     const target = e.target.closest(".trash-icon");
     if(target) {
