@@ -60,6 +60,8 @@ h2 {
     font-size: 1.4rem;
 }
 
+
+
 .add-project {
     font-size: 2rem;
     color: azure;
@@ -82,6 +84,20 @@ main {
     gap: 2rem;
 }
 
+.projects-names-container {
+    display: flex;
+}
+
+.project-name-description-edit-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.project-name-description-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .project-name {
     font-size: 2.3rem;
     color: aqua;
@@ -92,9 +108,45 @@ main {
     color: yellowgreen;
 }
 
+.edit-project-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .long-line {
     width: 90%;
     border: 1px solid grey;
+}
+
+.project-tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.task-edit-icon, .trash-icon {
+    ;
+}
+
+.project-edit-icon {
+    cursor: pointer;
+}
+
+.project-trash-icon {
+    cursor: pointer;
+}
+
+.task-infos-container { 
+    background-color: rgba(22, 22, 22, 0.3);
+}
+
+.task-edit-icon:hover {
+    cursor: pointer;
+}
+
+.trash-icon:hover {
+    cursor: pointer;
 }
 
 .project-task {
