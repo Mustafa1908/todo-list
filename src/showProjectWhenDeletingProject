@@ -1,9 +1,0 @@
-function showProjectWhenDeletingProject(projectName, projectDescription) {
-    let projectDisplayName = document.querySelector(".project-name");
-    let projectDisplayDescription = document.querySelector(".project-description");
-    
-    projectDisplayName.innerHTML = `<span class="project-name">${projectName}</span>`;
-    projectDisplayDescription.innerHTML = `<span class="project-description">${projectDescription}</span>`;
-}
-
-export default showProjectWhenDeletingProject
